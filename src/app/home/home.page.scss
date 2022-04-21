@@ -53,3 +53,26 @@
   background-color: var(--ion-color-primary);
   border-radius: 15px;
 }
+
+// calendar 전체 너비 줄임.
+:host ::ng-deep {
+  .swiper-container {
+    width: 95%;
+  }
+}
+
+// ion-content {
+//   --offset-bottom: auto !important;
+//   --overflow: auto;
+//   --background: #f7f7fa;
+//   overflow: auto;
+
+//   &::part(background) {
+//     bottom: 0;
+//   }
+
+//   &::-webkit-scrollbar {
+//     display: none;
+//     scrollbar-width: none;
+//   }
+// }

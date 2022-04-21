@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'cal-modal',
     loadChildren: () => import('./pages/cal-modal/cal-modal.module').then( m => m.CalModalPageModule)
   },
+  {
+    path: 'menu-bar',
+    loadChildren: () => import('./pages/menu-bar/menu-bar.module').then( m => m.MenuBarPageModule)
+  },
 ];
 
 @NgModule({
