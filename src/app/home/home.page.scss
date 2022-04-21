@@ -61,6 +61,15 @@
   }
 }
 
+// events 관련 styling
+:host ::ng-deep {
+  // 아래는 event detail을 안보이게 해 주는 코드
+  .event-detail-container {
+    margin-top: 15px;
+    border-top: 1px lightgray solid !important;
+  }
+}
+
 // ion-content {
 //   --offset-bottom: auto !important;
 //   --overflow: auto;
