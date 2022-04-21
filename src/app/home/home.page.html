@@ -1,20 +1,79 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Calendar
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openCalModal()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-content>
+  <ion-segment (ionChange)="calendarModeChanged($event)">
+    <ion-segment-button value="month">
+      <ion-label>Month</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="week">
+      <ion-label>Week</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="day">
+      <ion-label>Day</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button (click)="createRandomEvents()" expand="block" fill="clear" shape="round">
+          Create Events
+        </ion-button>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="removeEvents()" expand="block" fill="clear" shape="round">
+          Remove Events
+        </ion-button>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <!-- Move back on screen of the slides -->
+      <ion-col size="2">
+        <ion-button fill="clear" (click)="back()">
+          <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+      <!-- Mover forward one screen of the slides -->
+      <ion-col size="8" class="ion-text-center">
+        <h2 style="color: white">{{viewTitle}}</h2>
+      </ion-col>
+
+      <ion-col size="2">
+        <ion-button fill="clear" (click)="next()">
+          <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <calendar [eventSource]="eventSource" [calendarMode]="calendarMode" [currentDate]="calendar.currentDate"
+    (onTitleChanged)="onViewTitleChanged($event)" [monthviewDisplayEventTemplate]="template">
+  </calendar>
+
+  <ng-template #template let-view="view" let-row="row" let-col="col">
+    {{view.dates[row*7+col].label}}
+
+    <!-- 혹시나 해당 값 안에 뭐가 들었는지 궁금한 경우 아래와 같이 json형태로 출력 해 볼 수 있음 -->
+    <!-- {{view.dates[row*7+col] | json}} -->
+    <div class="indicator-container">
+      <div class="event-indicator" *ngFor="let e of view.dates[row*7+col].events"></div>
+    </div>
+  </ng-template>
+
+
+
 </ion-content>

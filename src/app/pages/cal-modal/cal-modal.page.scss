@@ -1,0 +1,11 @@
+:host ::ng-deep {
+  // 아래는 event detail을 안보이게 해 주는 코드
+  .event-detail-container {
+    display: none;
+  }
+
+  // 아래는 빈공간이 있는 경우 강제로 없애주는 코드
+  .monthview-container {
+    height: auto !important;
+  }
+}
